@@ -29,7 +29,7 @@ read answer
 if [ "$answer" = "ly" ]; then
     echo "Installing Ly-Display manager"
     sudo apt update
-    sudo apt install build-essential libpam0g-dev libxcb-xkb-dev git -y
+    sudo apt install build-essential libpam0g-dev libxcb-xkb-dev git
     git clone --recurse-submodules https://github.com/nullgemm/ly.git
     cd ly
     make
@@ -60,6 +60,7 @@ elif [ "$answer" = "no" ]; then
     echo "Dont want styrmans dotfiles???? ok."
 else
     echo "Answer yes or no please"
+fi
 
 # Install emacs
 echo "Do you want to install Doom-emacs? (doom/no)"
