@@ -95,7 +95,7 @@ fi
 echo "Do you want to install styrmans fonts? (y/n)"
 read answer
 
-if ["$answer" = "y" ]; then
+if [ "$answer" = "y" ]; then
     # 1. Create font directory
     mkdir -p ~/.local/share/fonts
     cd
@@ -107,7 +107,7 @@ if ["$answer" = "y" ]; then
     rm JetBrainsMono.zip
     # 5. Refresh font cache
     fc-cache -fv
-elif ["$answer" = "n" ];then
+elif [ "$answer" = "n" ];then
     echo "No fonts installed"
 else
     echo "OK"
@@ -117,14 +117,15 @@ fi
 echo "Do you want to install nwg-look for setting themes? (y/n)"
 read answer
 
-if ["$answer" = "y" ];then
+if [ "$answer" = "y" ];then
     echo "Installing dependencies"
-    sudo apt install git build-essential lxqt
+    sudo apt install build-essential golang git gtk3 gsettings-desktop-schemas
     cd
     git clone https://github.com/Nwg-piotr/nwg-look.git
     cd nwg-look
-    ./install.sh
-elif ["$answer" = "n" ]; then
+    make build
+    sudo make install
+elif [ "$answer" = "n" ]; then
     echo "nwg-look is not installed"
 else
     echo "OK"
