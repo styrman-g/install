@@ -7,7 +7,7 @@ sudo apt update && sudo apt upgrade
 
 # Installing important programs first
 echo "Installing basic programs"
-sudo apt install git stow zip unzip
+sudo apt install git stow zip unzip network-manager
 
 # Installing sway
 echo "Do you want to install SWAY? (yes/no)"
