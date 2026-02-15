@@ -112,4 +112,35 @@ else
 fi
 
 # Install flatpaks
-# ställ fråga
+echo "Do you want to set up flatpaks? (y/n)"
+read answer
+
+if [ "$answer" = "y" ]; then
+    echo "Installing flatpak"
+    sudo apt install flatpak
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    echo "Installing some flatpaks"
+    flatpak install flathub com.synology.SynologyDrive
+    flatpak install flathub io.github.flattool.Warehouse
+    flatpak install flathub me.proton.Mail
+    flatpak install flathub com.protonvpn.www
+    flatpak install flathub org.onlyoffice.desktopeditors
+    flatpak install flathub com.brave.Browser
+elif [ "$answer" = "n" ]; then
+    echo "Setup flatpak later"
+else
+    echo "OK"
+fi
+
+# Installing all sowtwere that i nead
+echo "Do you want to install all the programs that styrman uses? (y/n)"
+read answer
+
+if [ "$answer" = "y" ]; then
+    echo "Installing some debian packages"
+    sudo apt install keepassxc calibre mpv htop
+elif [ "$answer" = "n" ]; then
+    echo "Do it later"
+else
+    echo "OK"
+fi
