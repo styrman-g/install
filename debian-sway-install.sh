@@ -7,7 +7,7 @@ sudo apt update && sudo apt upgrade
 
 # Installing important programs first
 echo "Installing basic programs"
-sudo apt install git stow zip unzip network-manager
+sudo apt install git stow zip unzip network-manager network-manager-gnome nwg-look thunar wlogout
 
 # Installing sway
 echo "Do you want to install SWAY? (yes/no)"
@@ -54,9 +54,6 @@ if [ "$answer" = "yes" ]; then
     echo "Cloning my dotfiles"
     cd
     git clone https://github.com/styrman-g/dotfiles.git
-    rm -r .bashrc
-    cd dotfiles
-    stow .
     sudo apt install lsd curl
     cd
     curl -sS https://starship.rs/install.sh | sh
@@ -67,12 +64,13 @@ else
 fi
 
 # Install emacs
-echo "Do you want to install Doom-emacs? (doom/no)"
+echo "Do you want to install Doom-emacs? (y/n)"
 read answer
 
-if [ "$answer" = "doom" ]; then
+if [ "$answer" = "y" ]; then
     echo "First install emacs"
-    sudo apt install emacs
+    sudo apt install emacs-gtk
+    cd
     echo "Installing Doom"
     git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
     ~/.config/emacs/bin/doom install
@@ -85,7 +83,7 @@ if [ "$answer" = "doom" ]; then
     stow .
     cd
     doom sync
-elif [ "$answer" = "no" ]; then
+elif [ "$answer" = "n" ]; then
     echo "Setting up emacs later"
 else
     echo "Do nothing"
@@ -109,24 +107,6 @@ if [ "$answer" = "y" ]; then
     fc-cache -fv
 elif [ "$answer" = "n" ];then
     echo "No fonts installed"
-else
-    echo "OK"
-fi
-
-# Install nwg-look
-echo "Do you want to install nwg-look for setting themes? (y/n)"
-read answer
-
-if [ "$answer" = "y" ];then
-    echo "Installing dependencies"
-    sudo apt install build-essential golang git gtk3 gsettings-desktop-schemas
-    cd
-    git clone https://github.com/Nwg-piotr/nwg-look.git
-    cd nwg-look
-    make build
-    sudo make install
-elif [ "$answer" = "n" ]; then
-    echo "nwg-look is not installed"
 else
     echo "OK"
 fi
