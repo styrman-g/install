@@ -62,7 +62,7 @@ echo "Do you want to install styrmans fonts? (y/n)"
 read answer
 
 if [ "$answer" = "y" ]; then
-    sudo apt install fonts-jetbrains-mono
+    sudo apt install fonts-jetbrains-mono fonts-hack
     echo "Remember to install nerd fonts if you nead it"
 elif [ "$answer" = "n" ];then
     echo "No fonts installed"
