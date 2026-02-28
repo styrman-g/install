@@ -10,54 +10,30 @@ echo "Installing basic programs"
 sudo apt install git stow zip unzip network-manager network-manager-gnome nwg-look thunar wlogout
 
 # Installing sway
-echo "Do you want to install SWAY? (yes/no)"
+echo "Do you want to install SWAY? (y/n)"
 read answer
 
-if [ "$answer" = "yes" ]; then
+if [ "$answer" = "y" ]; then
     echo "Installing Sway with dependencis."
     sudo apt install sway waybar rofi alacritty dunst swaylock swayidle swaybg xdg-desktop-portal-wlr xwayland
-elif [ "$answer" = "no" ]; then
+elif [ "$answer" = "n" ]; then
     echo "Do not install Sway"
 else
-    echo "Answer 'yes' or 'no'."
+    echo "Answer 'y' or 'n'."
 fi
-
-# Install a window manager
-echo " Do you want to install Ly or SDDM? (ly/sddm)"
-read answer
-
-if [ "$answer" = "ly" ]; then
-    echo "Installing Ly-Display manager"
-    sudo apt update
-    sudo apt install build-essential libpam0g-dev libxcb-xkb-dev git
-    git clone --recurse-submodules https://github.com/nullgemm/ly.git
-    cd ly
-    make
-    sudo make install
-    sudo systemctl enable ly
-elif [ "$answer" = "sddm" ]; then
-    echo "Installing SDDM"
-    sudo apt install sddm
-    sudo systemctl enable sddm
-    echo "Setting up a theme for SDDM"
-    git clone -b main --depth=1 https://github.com/uiriansan/SilentSDDM && cd SilentSDDM && ./install.sh
-else
-    echo "Do not install a Display Manager"
-fi
-
 
 # Install my dotfiles
-echo "Do you want to install styrmans dotfiles? (yes/no)"
+echo "Do you want to install styrmans dotfiles? (y/n)"
 read answer
 
-if [ "$answer" = "yes" ]; then
+if [ "$answer" = "y" ]; then
     echo "Cloning my dotfiles"
     cd
     git clone https://github.com/styrman-g/dotfiles.git
     sudo apt install lsd curl
     cd
     curl -sS https://starship.rs/install.sh | sh
-elif [ "$answer" = "no" ]; then
+elif [ "$answer" = "n" ]; then
     echo "Dont want styrmans dotfiles???? ok."
 else
     echo "Answer yes or no please"
@@ -74,14 +50,6 @@ if [ "$answer" = "y" ]; then
     echo "Installing Doom"
     git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
     ~/.config/emacs/bin/doom install
-    cd
-    rm -rf .bashrc
-    cd .config
-    rm -rf /doom
-    cd
-    cd dotfiles
-    stow .
-    cd
     doom sync
 elif [ "$answer" = "n" ]; then
     echo "Setting up emacs later"
