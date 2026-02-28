@@ -62,17 +62,8 @@ echo "Do you want to install styrmans fonts? (y/n)"
 read answer
 
 if [ "$answer" = "y" ]; then
-    # 1. Create font directory
-    mkdir -p ~/.local/share/fonts
-    cd
-    # 2. Download the font (JetBrainsMono Nerd Font)
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip
-    # 3. Unzip the file
-    unzip JetBrainsMono.zip -d ~/.local/share/fonts
-    # 4. Remove the zip file
-    rm JetBrainsMono.zip
-    # 5. Refresh font cache
-    fc-cache -fv
+    sudo apt install fonts-jetbrains-mono
+    echo "Remember to install nerd fonts if you nead it"
 elif [ "$answer" = "n" ];then
     echo "No fonts installed"
 else
